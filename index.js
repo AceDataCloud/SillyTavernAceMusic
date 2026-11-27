@@ -150,3 +150,24 @@ jQuery(() => {
         visualChoices.replaceChildren();
     });
 });
+
+let providerRegistration;
+
+export function onActivate() {
+    const { customProviders } = SillyTavern.getContext();
+    if (providerRegistration || customProviders?.apiVersion !== 1) return;
+    providerRegistration = customProviders.register('acedatacloud', {
+        label: 'Ace Data Cloud',
+        defaults: { custom_url: 'https://api.acedata.cloud/v1' },
+        models: { mode: 'discover' },
+        auth: { mode: 'bearer', required: true },
+        documentationUrl: 'https://github.com/AceDataCloud/SillyTavernAceMusic#connect-a-chat-model',
+        supportUrl: 'https://github.com/AceDataCloud/SillyTavernAceMusic/issues',
+        note: 'Choose an Ace Data Cloud application key, connect, then select a chat model.',
+    });
+}
+
+export function onDisable() {
+    providerRegistration?.unregister();
+    providerRegistration = undefined;
+}
