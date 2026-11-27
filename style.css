@@ -4,3 +4,10 @@
     object-fit: cover;
     pointer-events: none;
 }
+
+#ace-music-scene .ace-media-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    border-radius: 4px;
+}
