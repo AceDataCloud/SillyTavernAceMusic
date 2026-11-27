@@ -1,10 +1,11 @@
 {
-  "display_name": "ACE Music Scene Player",
+  "display_name": "Ace Scene Media",
   "loading_order": 100,
   "requires": [],
   "optional": [],
   "js": "index.js",
   "author": "Ace Data Cloud",
-  "version": "1.0.0",
-  "homePage": "https://github.com/AceDataCloud/SillyTavernAceMusic"
+  "version": "1.1.0",
+  "homePage": "https://github.com/AceDataCloud/SillyTavernAceMusic",
+  "css": "style.css"
 }
