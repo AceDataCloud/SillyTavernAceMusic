@@ -6,13 +6,14 @@ jQuery(() => {
     drawer.id = 'ace-music-scene';
     drawer.innerHTML = `
         <div class="inline-drawer-toggle inline-drawer-header">
-            <b>Ace Scene Media</b>
+            <b><img class="ace-media-icon" src="${new URL('./icons/ace-data-cloud.png', import.meta.url)}" alt=""> Ace Scene Media</b>
             <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
         <div class="inline-drawer-content">
             <form>
-                <label>Media service <select name="service" class="text_pole"></select></label>
+                <label>Media service <img class="ace-media-icon" data-service-icon alt=""> <select name="service" class="text_pole"></select></label>
                 <label>Application token <input name="token" class="text_pole" type="password" autocomplete="off" required></label>
+                <a href="https://platform.acedata.cloud/console/applications?utm_source=sillytavern&amp;utm_medium=referral&amp;utm_campaign=evergreen" target="_blank" rel="noopener noreferrer">Get an application token</a>
                 <label>Existing task ID <input name="task" class="text_pole" autocomplete="off" required></label>
                 <button class="menu_button" type="submit">Load media</button>
             </form>
@@ -42,6 +43,13 @@ jQuery(() => {
     let visualKind;
     let backdrop;
     for (const [id, spec] of services) form.elements.service.add(new Option(spec.name, id));
+
+    const serviceImage = form.querySelector('[data-service-icon]');
+    function updateServiceImage() {
+        serviceImage.src = new URL('./icons/' + form.elements.service.value + '.png', import.meta.url).href;
+    }
+    updateServiceImage();
+    form.elements.service.addEventListener('change', updateServiceImage);
 
     function clearBackdrop() {
         if (backdrop instanceof HTMLVideoElement) {
@@ -144,6 +152,7 @@ jQuery(() => {
         clearAudio();
         clearBackdrop();
         form.reset();
+        updateServiceImage();
         loop.checked = false;
         audio.loop = false;
         visualPanel.hidden = true;
