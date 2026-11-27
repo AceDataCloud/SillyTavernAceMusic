@@ -5,7 +5,14 @@
   "optional": [],
   "js": "index.js",
   "author": "Ace Data Cloud",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homePage": "https://github.com/AceDataCloud/SillyTavernAceMusic",
-  "css": "style.css"
+  "css": "style.css",
+  "hooks": {
+    "activate": "onActivate",
+    "enable": "onActivate",
+    "disable": "onDisable",
+    "delete": "onDisable",
+    "clean": "onDisable"
+  }
 }
